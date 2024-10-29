@@ -2,7 +2,6 @@ import abc
 from enum import Enum as EnumCLS
 from typing import Any, List, Optional, Tuple, Type
 
-import pendulum
 from starlette.requests import Request
 from tortoise import Model
 from tortoise.queryset import QuerySet
@@ -72,14 +71,9 @@ class Datetime(Filter):
         )
 
     async def parse_value(self, request: Request, value: Optional[str]):
-        if value:
-            ranges = value.split(" - ")
-            return pendulum.parse(ranges[0]), pendulum.parse(ranges[1])
+        return None
 
-    async def render(self, request: Request, value: Tuple[pendulum.DateTime, pendulum.DateTime]):
-        format_ = self.context.get("format")
-        if value is not None:
-            value = value[0].format(format_) + " - " + value[1].format(format_)
+    async def render(self, request: Request, value):
         return await super().render(request, value)
 
 

@@ -24,7 +24,6 @@ python = "^3.7"
 python-multipart = "*"
 tortoise-orm = "*"
 uvicorn = { version = "*", extras = ["standard"] }
-pendulum = "*"
 
 [tool.poetry.dev-dependencies]
 # test
